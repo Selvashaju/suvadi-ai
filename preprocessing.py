@@ -156,7 +156,11 @@ def find_page_quad(rgb: np.ndarray) -> np.ndarray | None:
     return None
 
 
-def warp_to_quad(rgb: np.ndarray, quad: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+def warp_to_quad(rgb: np.ndarray, quad: np.ndarray,
+                 inset: float = 0.012) -> tuple[np.ndarray, np.ndarray]:
+    # pull corners slightly inward so the table edge is not kept as a black border
+    centre = quad.mean(axis=0)
+    quad = (centre + (quad - centre) * (1.0 - inset)).astype(np.float32)
     tl, tr, br, bl = quad
     w = int(max(np.linalg.norm(br - bl), np.linalg.norm(tr - tl)))
     h = int(max(np.linalg.norm(tr - br), np.linalg.norm(tl - bl)))
