@@ -131,7 +131,7 @@ if selected_page == pages[0]:
 elif selected_page == pages[1]:
     from preprocessing import preprocess_image, to_png_bytes
     from suvadi_real_bridge import build_review_tokens
-    from suvadi_review_store import get_tokens, add_tokens_if_absent
+    from suvadi_review_store import get_tokens, add_tokens_if_absent, get_page_info
     import hashlib
     import html
     from tamil_reading import readable_unicode
@@ -228,7 +228,9 @@ elif selected_page == pages[1]:
                     f"{safe}</div>", unsafe_allow_html=True)
                 st.caption(t("restoration_ui_019"))
                 st.download_button(t("restoration_ui_020"),
-                    data=json.dumps({"page_id": page_key, "evidence_results": current},
+                    data=json.dumps({"page_id": page_key,
+                                     "source_sha256": (get_page_info(page_key) or {}).get("source_sha256"),
+                                     "evidence_results": current},
                                     ensure_ascii=False, indent=2).encode("utf-8"),
                     file_name="suvadi_evidence_results.json", mime="application/json")
 
@@ -499,7 +501,7 @@ elif selected_page == pages[3]:
 # Page 5: Existing archive remains unchanged; live reviewed tokens are used
 elif selected_page == pages[4]:
     from archive import load_archive, save_archive_record, search_archive
-    from suvadi_review_store import get_tokens
+    from suvadi_review_store import get_tokens, get_page_info
     st.title(t("archive_ui_001"))
     st.caption(t("archive_ui_002"))
     tokens = get_tokens(st.session_state.get("active_page_key"))
@@ -510,10 +512,27 @@ elif selected_page == pages[4]:
             st.warning(t("archive_ui_008"))
         st.caption(t("archive_ui_005"))
         if st.button(t("archive_ui_006"), disabled=bool(pending)):
-            save_archive_record(st.session_state.get("book_title", t("archive_ui_011")),
-                st.session_state.get("author", t("archive_ui_012")),
-                st.session_state.get("page_number", 1), tokens)
-            st.success(t("archive_ui_009"))
+            try:
+                page_key = st.session_state.get("active_page_key")
+                page_info = get_page_info(page_key)
+                if page_info is None:
+                    st.error(t("archive_ui_missing_page"))
+                else:
+                    source_sha256 = page_info.get("source_sha256")
+                    save_archive_record(
+                        page_info["book_title"],
+                        page_info["author"],
+                        page_info["page_number"],
+                        tokens,
+                        page_key=page_info["page_key"],
+                        source_sha256=source_sha256,
+                    )
+                    st.success(t("archive_ui_009"))
+                    if source_sha256 is None:
+                        st.warning(t("archive_ui_legacy_hash"))
+            except Exception:
+                logging.exception("Could not save verified page to archive")
+                st.error(t("archive_ui_save_failed"))
     else:
         st.info(t("archive_ui_007"))
     st.divider()
