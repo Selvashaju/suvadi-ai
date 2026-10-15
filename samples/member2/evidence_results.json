@@ -1,0 +1,393 @@
+{
+  "project": "SUVADI AI",
+  "input_image": "sample\\images (1).jpeg",
+  "language": "tam",
+  "preprocessing_variants": {
+    "gray": "output\\images (1)_gray.png",
+    "threshold": "output\\images (1)_threshold.png",
+    "sharpened": "output\\images (1)_sharpened.png"
+  },
+  "ocr_token_counts": {
+    "gray": 16,
+    "threshold": 10,
+    "sharpened": 16
+  },
+  "evidence_results": [
+    {
+      "token_id": 1,
+      "text": "உம்மை",
+      "confidence": 93.0,
+      "agreement": 100.0,
+      "score": 95.8,
+      "status": "HIGH",
+      "evidence_state": "HIGH",
+      "bounding_box": {
+        "x": 285,
+        "y": 288,
+        "width": 104,
+        "height": 28
+      },
+      "source_variant": "gray",
+      "source_variants": [
+        "gray",
+        "threshold",
+        "sharpened"
+      ],
+      "alternatives": [
+        "உம்மை"
+      ]
+    },
+    {
+      "token_id": 2,
+      "text": "உறுதியாய்ப்",
+      "confidence": 86.33,
+      "agreement": 100.0,
+      "score": 91.8,
+      "status": "HIGH",
+      "evidence_state": "HIGH",
+      "bounding_box": {
+        "x": 405,
+        "y": 288,
+        "width": 157,
+        "height": 36
+      },
+      "source_variant": "gray",
+      "source_variants": [
+        "gray",
+        "threshold",
+        "sharpened"
+      ],
+      "alternatives": [
+        "உறுதியாய்ப்"
+      ]
+    },
+    {
+      "token_id": 3,
+      "text": "பற்றிக்கொண்ட",
+      "confidence": 89.67,
+      "agreement": 100.0,
+      "score": 93.8,
+      "status": "HIGH",
+      "evidence_state": "HIGH",
+      "bounding_box": {
+        "x": 320,
+        "y": 331,
+        "width": 206,
+        "height": 34
+      },
+      "source_variant": "gray",
+      "source_variants": [
+        "gray",
+        "threshold",
+        "sharpened"
+      ],
+      "alternatives": [
+        "பற்றிக்கொண்ட"
+      ]
+    },
+    {
+      "token_id": 4,
+      "text": "மனதையுடையவன்",
+      "confidence": 81.0,
+      "agreement": 66.67,
+      "score": 75.27,
+      "status": "REVIEW",
+      "evidence_state": "REVIEW",
+      "bounding_box": {
+        "x": 288,
+        "y": 374,
+        "width": 271,
+        "height": 36
+      },
+      "source_variant": "gray",
+      "source_variants": [
+        "gray",
+        "sharpened"
+      ],
+      "alternatives": [
+        "மனதையுடையவன்",
+        "மனதையுபைபவன்"
+      ]
+    },
+    {
+      "token_id": 5,
+      "text": "உம்மையே",
+      "confidence": 76.67,
+      "agreement": 100.0,
+      "score": 86.0,
+      "status": "HIGH",
+      "evidence_state": "HIGH",
+      "bounding_box": {
+        "x": 351,
+        "y": 417,
+        "width": 145,
+        "height": 29
+      },
+      "source_variant": "gray",
+      "source_variants": [
+        "gray",
+        "threshold",
+        "sharpened"
+      ],
+      "alternatives": [
+        "உம்மையே"
+      ]
+    },
+    {
+      "token_id": 6,
+      "text": "நம்பியிருக்கிறபடியால்,",
+      "confidence": 49.0,
+      "agreement": 66.67,
+      "score": 56.07,
+      "status": "UNREADABLE",
+      "evidence_state": "UNREADABLE",
+      "bounding_box": {
+        "x": 280,
+        "y": 460,
+        "width": 286,
+        "height": 35
+      },
+      "source_variant": "gray",
+      "source_variants": [
+        "gray"
+      ],
+      "alternatives": [
+        "நம்பியிருக்கிறபடியால்,",
+        "நம்பிபிறக்கிறபடியால்,",
+        "றம்பியிருக்கிறபடியால்,"
+      ]
+    },
+    {
+      "token_id": 7,
+      "text": "நீர்",
+      "confidence": 90.67,
+      "agreement": 100.0,
+      "score": 94.4,
+      "status": "HIGH",
+      "evidence_state": "HIGH",
+      "bounding_box": {
+        "x": 277,
+        "y": 500,
+        "width": 34,
+        "height": 36
+      },
+      "source_variant": "gray",
+      "source_variants": [
+        "gray",
+        "threshold",
+        "sharpened"
+      ],
+      "alternatives": [
+        "நீர்"
+      ]
+    },
+    {
+      "token_id": 8,
+      "text": "அவனைப்",
+      "confidence": 90.67,
+      "agreement": 100.0,
+      "score": 94.4,
+      "status": "HIGH",
+      "evidence_state": "HIGH",
+      "bounding_box": {
+        "x": 322,
+        "y": 503,
+        "width": 152,
+        "height": 36
+      },
+      "source_variant": "gray",
+      "source_variants": [
+        "gray",
+        "threshold",
+        "sharpened"
+      ],
+      "alternatives": [
+        "அவனைப்"
+      ]
+    },
+    {
+      "token_id": 9,
+      "text": "பூரண",
+      "confidence": 90.0,
+      "agreement": 33.33,
+      "score": 67.33,
+      "status": "REVIEW",
+      "evidence_state": "REVIEW",
+      "bounding_box": {
+        "x": 486,
+        "y": 511,
+        "width": 84,
+        "height": 29
+      },
+      "source_variant": "gray",
+      "source_variants": [
+        "gray"
+      ],
+      "alternatives": [
+        "பூரண",
+        "ரண:",
+        "பரண"
+      ]
+    },
+    {
+      "token_id": 10,
+      "text": "சமாதானத்துடன்",
+      "confidence": 67.33,
+      "agreement": 100.0,
+      "score": 80.4,
+      "status": "REVIEW",
+      "evidence_state": "REVIEW",
+      "bounding_box": {
+        "x": 272,
+        "y": 545,
+        "width": 302,
+        "height": 51
+      },
+      "source_variant": "gray",
+      "source_variants": [
+        "gray",
+        "sharpened"
+      ],
+      "alternatives": [
+        "சமாதானத்துடன்",
+        "சமாதானசத்துடன"
+      ]
+    },
+    {
+      "token_id": 11,
+      "text": "காத்துக்கொள்வீர்,",
+      "confidence": 83.0,
+      "agreement": 66.67,
+      "score": 76.47,
+      "status": "REVIEW",
+      "evidence_state": "REVIEW",
+      "bounding_box": {
+        "x": 277,
+        "y": 597,
+        "width": 287,
+        "height": 72
+      },
+      "source_variant": "gray",
+      "source_variants": [
+        "gray",
+        "sharpened"
+      ],
+      "alternatives": [
+        "காத்துக்கொள்வீர்,"
+      ]
+    },
+    {
+      "token_id": 12,
+      "text": "ஜ்",
+      "confidence": 34.0,
+      "agreement": 33.33,
+      "score": 33.73,
+      "status": "UNREADABLE",
+      "evidence_state": "UNREADABLE",
+      "bounding_box": {
+        "x": 585,
+        "y": 624,
+        "width": 68,
+        "height": 70
+      },
+      "source_variant": "gray",
+      "source_variants": [
+        "gray"
+      ],
+      "alternatives": [
+        "ஜ்",
+        "-"
+      ]
+    },
+    {
+      "token_id": 13,
+      "text": "ர",
+      "confidence": 37.0,
+      "agreement": 33.33,
+      "score": 35.53,
+      "status": "UNREADABLE",
+      "evidence_state": "UNREADABLE",
+      "bounding_box": {
+        "x": 522,
+        "y": 683,
+        "width": 36,
+        "height": 18
+      },
+      "source_variant": "gray",
+      "source_variants": [
+        "gray"
+      ],
+      "alternatives": [
+        "ர",
+        "263,"
+      ]
+    },
+    {
+      "token_id": 14,
+      "text": "்",
+      "confidence": 0.0,
+      "agreement": 33.33,
+      "score": 13.33,
+      "status": "UNREADABLE",
+      "evidence_state": "UNREADABLE",
+      "bounding_box": {
+        "x": 650,
+        "y": 698,
+        "width": 12,
+        "height": 18
+      },
+      "source_variant": "gray",
+      "source_variants": [
+        "gray"
+      ],
+      "alternatives": [
+        "்"
+      ]
+    },
+    {
+      "token_id": 15,
+      "text": "ம",
+      "confidence": 6.0,
+      "agreement": 33.33,
+      "score": 16.93,
+      "status": "UNREADABLE",
+      "evidence_state": "UNREADABLE",
+      "bounding_box": {
+        "x": 453,
+        "y": 732,
+        "width": 31,
+        "height": 41
+      },
+      "source_variant": "gray",
+      "source_variants": [
+        "gray"
+      ],
+      "alternatives": [
+        "ம"
+      ]
+    },
+    {
+      "token_id": 16,
+      "text": "இல்",
+      "confidence": 30.0,
+      "agreement": 33.33,
+      "score": 31.33,
+      "status": "UNREADABLE",
+      "evidence_state": "UNREADABLE",
+      "bounding_box": {
+        "x": 573,
+        "y": 685,
+        "width": 75,
+        "height": 76
+      },
+      "source_variant": "gray",
+      "source_variants": [
+        "gray"
+      ],
+      "alternatives": [
+        "இல்",
+        "4"
+      ]
+    }
+  ]
+}
