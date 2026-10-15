@@ -1,13 +1,10 @@
+
 from pathlib import Path
 
 import pytesseract
 from PIL import Image
 
-
-# Tesseract installation on Windows
-TESSERACT_PATH = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-
-pytesseract.pytesseract.tesseract_cmd = TESSERACT_PATH
+from tesseract_setup import configure_tesseract
 
 
 def run_ocr(image_path: str, lang: str = "tam") -> list[dict]:
@@ -22,6 +19,9 @@ def run_ocr(image_path: str, lang: str = "tam") -> list[dict]:
     - width
     - height
     """
+
+    # Configure Tesseract for Windows/Linux
+    configure_tesseract()
 
     image_file = Path(image_path)
 
