@@ -4,4 +4,6 @@ __pycache__/
 .pytest_cache/
 .DS_Store
 samples/sim_noisy.png
-data/
+data/.venv/
+__pycache__/
+.DS_Store

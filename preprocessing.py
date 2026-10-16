@@ -419,3 +419,19 @@ def to_png_bytes(image: np.ndarray) -> bytes:
 def public_metadata(metadata: dict) -> dict:
     """JSON-safe metadata for the audit record (Member 4)."""
     return {k: v for k, v in metadata.items()}
+
+def repair_strokes(img_bgr, strength=3):
+    """Display-only stroke repair. Same size as input; never fed to OCR boxes."""
+    import cv2
+    import numpy as np
+    gray = img_bgr if img_bgr.ndim == 2 else cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY)
+    gray = cv2.bilateralFilter(gray, 7, 40, 7)
+    _, bw = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
+    if strength > 1:
+        k = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (strength, strength))
+        bw = cv2.morphologyEx(bw, cv2.MORPH_CLOSE, k)
+    n, lab, stats, _ = cv2.connectedComponentsWithStats(bw, 8)
+    keep_ids = np.where(stats[:, cv2.CC_STAT_AREA] >= 8)[0]
+    keep_ids = keep_ids[keep_ids != 0]
+    keep = np.isin(lab, keep_ids)
+    return np.where(keep, 0, 255).astype(np.uint8)

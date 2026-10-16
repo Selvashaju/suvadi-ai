@@ -129,7 +129,8 @@ if selected_page == pages[0]:
 
 # Page 2: Member 1 real restoration + Member 2 OCR/evidence
 elif selected_page == pages[1]:
-    from preprocessing import preprocess_image, to_png_bytes
+    from preprocessing import preprocess_image, to_png_bytes, repair_strokes
+    import numpy as np
     from suvadi_real_bridge import build_review_tokens
     from suvadi_review_store import get_tokens, add_tokens_if_absent, get_page_info
     import hashlib
@@ -170,24 +171,35 @@ elif selected_page == pages[1]:
                 st.info(t("restoration_ui_011"))
         else:
             labels = {"gray": t("restoration_ui_005"), "threshold": t("restoration_ui_006"),
-                      "sharpened": t("restoration_ui_007")}
-            variant_names = [k for k in labels if k in result["variants"]]
+            "sharpened": t("restoration_ui_007"),
+            "repaired": "எழுத்துக் கோடு சீரமைப்பு"}
+            variant_names = [k for k in labels if k in result["variants"]] + ["repaired"]
             selected_variant = st.selectbox(
                 t("restoration_ui_008"), variant_names,
                 format_func=lambda k: labels[k])
+
+            if selected_variant == "repaired":
+                strength = st.select_slider("சீரமைப்பு வலிமை", options=[1, 3, 5], value=3)
+                if strength >= 5:
+                    st.warning("அதிக வலிமை எழுத்துகளை ஒட்டவைக்கும்; எழுத்தின் வடிவம் மாறலாம்.")
+                base = result["variants"].get("gray", result["original_rgb"])
+                shown = repair_strokes(np.asarray(base), strength)
+            else:
+                shown = result["variants"][selected_variant]
+
             a, b = st.columns(2)
             with a:
                 st.subheader(t("original_page_title"))
                 st.image(result["original_rgb"], width="stretch")
             with b:
                 st.subheader(t("restored_page_title"))
-                st.image(result["variants"][selected_variant], width="stretch")
+                st.image(shown, width="stretch")
 
             if st.button(t("restoration_ui_009")):
-                st.session_state["enhanced_image"] = to_png_bytes(result["variants"][selected_variant])
+                st.session_state["enhanced_image"] = to_png_bytes(shown)
                 st.success(t("restoration_ui_012"))
             st.download_button(t("restoration_ui_010"),
-                to_png_bytes(result["variants"][selected_variant]),
+                to_png_bytes(shown),
                 file_name="suvadi_enhanced.png", mime="image/png")
 
             current = get_tokens(page_key)
